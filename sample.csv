@@ -1,0 +1,6 @@
+Id,firstName,lastName,salary,managerId
+123,Prabhakar,Kimavath,60000,
+124,Sudhakar,K,45000,123
+125,Kiran,P,47000,123
+300,Alice,H,50000,124
+305,Brett,Hard,34000,300
