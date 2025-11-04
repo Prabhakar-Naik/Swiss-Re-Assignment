@@ -66,5 +66,8 @@ run the application:
 ```
 ./mvnw spring-boot:run
 ```
-
+Run tests:
+```
+./mvnw test 
+```
 
