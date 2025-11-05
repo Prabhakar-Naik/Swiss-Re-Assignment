@@ -2,12 +2,16 @@ package com.swiss.re.swissreassignment;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 @SpringBootApplication
+@RestController
 public class SwissReAssignmentApplication {
 
     public static void main(String[] args) {
@@ -47,6 +51,11 @@ public class SwissReAssignmentApplication {
             System.err.println("Error: " + ex.getMessage());
             ex.printStackTrace();
         }
+    }
+
+    @GetMapping("/myData/{input}")
+    public Map<?, ?> getData(@PathVariable Object input){
+        return Map.of("API Response: ", "Success", "Your Input", input);
     }
 
 }
