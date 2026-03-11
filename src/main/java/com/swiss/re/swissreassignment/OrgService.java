@@ -30,7 +30,7 @@ public class OrgService {
                 double salary = 0;
                 try {
                     salary = Double.parseDouble(parts[3].trim());
-                } catch (Exception ex) {
+                } catch (Exception _) {
                     throw new IllegalArgumentException("Invalid salary on line: " + line);
                 }
                 String managerId = parts[4] == null ? null : parts[4].trim();
@@ -86,10 +86,10 @@ public class OrgService {
             double sal = e.getSalary();
             if (sal + 1e-9 < minAllowed) {
                 double shortfall = minAllowed - sal;
-                report.add(String.format("UNDERPAID: %s - salary=%.2f, expected>=%.2f, shortfall=%.2f", e, sal, minAllowed, shortfall));
+                report.add("UNDERPAID: %s - salary=%.2f, expected>=%.2f, shortfall=%.2f".formatted(e, sal, minAllowed, shortfall));
             } else if (sal - 1e-9 > maxAllowed) {
                 double excess = sal - maxAllowed;
-                report.add(String.format("OVERPAID: %s - salary=%.2f, expected<=%.2f, excess=%.2f", e, sal, maxAllowed, excess));
+                report.add("OVERPAID: %s - salary=%.2f, expected<=%.2f, excess=%.2f".formatted(e, sal, maxAllowed, excess));
             } else {
                 // within limits - no message
             }
@@ -102,7 +102,7 @@ public class OrgService {
         for (Employee e : employees.values()) {
             int between = countManagersBetweenAndCEO(e);
             if (between > allowedManagersBetween) {
-                report.add(String.format("TOO_LONG: %s - managers_between_CEO=%d, exceeds_by=%d", e, between, between - allowedManagersBetween));
+                report.add("TOO_LONG: %s - managers_between_CEO=%d, exceeds_by=%d".formatted(e, between, between - allowedManagersBetween));
             }
         }
         return report;

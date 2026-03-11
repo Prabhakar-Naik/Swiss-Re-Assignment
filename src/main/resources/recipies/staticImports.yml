@@ -1,0 +1,24 @@
+type: specs.openrewrite.org/v1beta/recipe
+name: org.openrewrite.java.migrate.UpgradeToJava25
+displayName: Migrate to Java 25
+description: |
+  This recipe will apply changes commonly needed when migrating to Java 25. This recipe will also replace deprecated API with equivalents when there is a clear migration strategy. Build files will also be updated to use Java 25 as the target/source and plugins will be also be upgraded to versions that are compatible with Java 25.
+tags:
+  - java25
+recipeList:
+  - org.openrewrite.java.migrate.UpgradeToJava21
+  - org.openrewrite.java.migrate.UpgradeJavaVersion:
+      version: 25
+  - org.openrewrite.github.SetupJavaUpgradeJavaVersion:
+      minimumJavaMajorVersion: 25
+  - org.openrewrite.java.migrate.io.ReplaceSystemOutWithIOPrint
+  - org.openrewrite.java.migrate.lang.MigrateMainMethodToInstanceMain
+  - org.openrewrite.java.migrate.lang.MigrateProcessWaitForDuration
+  - org.openrewrite.java.migrate.lang.ReplaceUnusedVariablesWithUnderscore
+  - org.openrewrite.java.migrate.util.MigrateInflaterDeflaterToClose
+  - org.openrewrite.java.migrate.util.MigrateStringReaderToReaderOf
+  - org.openrewrite.java.migrate.AccessController
+  - org.openrewrite.java.migrate.RemoveSecurityPolicy
+  - org.openrewrite.java.migrate.RemoveSecurityManager
+  - org.openrewrite.java.migrate.SystemGetSecurityManagerToNull
+  - org.openrewrite.java.migrate.MigrateZipErrorToZipException
